@@ -31,7 +31,7 @@ Time spent: 16
 
 ### Walkthrough
 
-![Video Walkthrough](...)
+![Video Walkthrough](https://raw.githubusercontent.com/vooooo/CP_Yelp/master/yelp_demo.gif?raw=true)
 
 
 
