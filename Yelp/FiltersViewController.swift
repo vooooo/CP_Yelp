@@ -12,12 +12,20 @@ import UIKit
     optional func filtersViewController(filtersViewController: FiltersViewController, didUpdateFilters filters: [String:AnyObject])
 }
 
-class FiltersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SwitchCellDelegate {
+class FiltersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SwitchCellDelegate, RadioCellDelegate  {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var categories: [[String:String]]!
-    var switchStates = [Int:Bool]()
+    var yelpFilters: Dictionary<String,[[String:String]]>!
+    var yelpFiltersTitles: [String]!
+
+    var categorySwitchStates = [Int:Bool]()
+    var distanceSwitchStates = [Int:Bool]()
+    var sortSwitchStates = [Int:Bool]()
+    var dealsFilter = Bool()
+
+    var categoriesCollapse = true
+    
     weak var delegate: FiltersViewControllerDelegate?
     
     override func viewDidLoad() {
@@ -25,7 +33,20 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.delegate = self
         tableView.dataSource = self
 
-        categories = yelpCategories()
+        let filters = [
+            "Deals" : yelpDeals(),
+            "Distance" : yelpDistance(),
+            "Sort By" : yelpSortyBy(),
+            "Categories" : yelpCategories()
+        ]
+        yelpFilters = filters
+
+        let filtersKeys = ["Deals","Distance","Sort By","Categories"]
+        yelpFiltersTitles = filtersKeys
+        
+        self.navigationController!.navigationBar.barTintColor = UIColor(red: 0xaf/255, green: 0x06/255, blue: 0x06/255, alpha: 1.0)
+        self.navigationController!.navigationBar.translucent = false;
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,10 +62,15 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBAction func onSearchButton(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
         
+        let categories = yelpCategoriesFull()
+        let distance = yelpDistance()
+
         var filters = [String:AnyObject]()
+
+        // CATEGORIES
         var selectedCategories =  [String]()
         
-        for (row,isSelected) in switchStates {
+        for (row,isSelected) in categorySwitchStates {
             if isSelected {
                 selectedCategories.append(categories[row]["code"]!)
             }
@@ -53,28 +79,136 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         if selectedCategories.count > 0 {
             filters["categories"] = selectedCategories
         }
+        
+        // DEALS
+        if (dealsFilter) {
+            filters["deals"] = true
+        } else {
+            filters["deals"] = false
+        }
+        
+        // DISTANCE
+        var distanceFilter:Int? =  10000
+        
+        for (row,isSelected) in distanceSwitchStates {
+            if isSelected {
+                let radius = distance[row]["code"]
+                distanceFilter = Int(radius!)
+            }
+        }
+        
+        filters["distance"] = distanceFilter
+        
+        // SORT BY
+        var sortFilter = Int()
+        
+        for (row,isSelected) in sortSwitchStates {
+            if isSelected {
+                sortFilter = row
+            }
+        }
+        
+        filters["sortby"] = sortFilter
+        
         delegate?.filtersViewController?(self, didUpdateFilters: filters)
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
-        
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return yelpFiltersTitles.count
     }
 
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let filterTitle = yelpFiltersTitles[section]
+        return (yelpFilters[filterTitle]?.count)!
+    }
+
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return yelpFiltersTitles[section]
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
         let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell", forIndexPath: indexPath) as! SwitchCell
 
-        cell.switchLabel.text = categories[indexPath.row]["name"]
+        let filterTitle = yelpFiltersTitles[indexPath.section]
+
+        var filtername = String()
+        if let filter = yelpFilters?[filterTitle]?[indexPath.row] {
+            filtername = filter["name"]!
+            cell.switchLabel.text = filtername
+
+            //If Categories and Showall process cell differently swiching categories list
+            if (indexPath.section == 3) {
+                if filtername == "Show All" {
+                    cell.onSwitch.hidden = true
+                    let singleTap = UITapGestureRecognizer(target: self, action: Selector("showAllCategories"))
+                    singleTap.numberOfTapsRequired = 1
+
+                    cell.switchLabel.userInteractionEnabled = true
+                    cell.switchLabel.addGestureRecognizer(singleTap)
+                    cell.switchLabel.textColor = UIColor.grayColor()
+                } else {
+                    cell.onSwitch.hidden = false
+                    cell.switchLabel.textColor = UIColor.blackColor()
+                }
+            }
+        }
+
         cell.delegate = self
-        
-        cell.onSwitch.on = switchStates[indexPath.row] ?? false
-        
+
+        if (indexPath.section == 0) {
+            cell.onSwitch.on = dealsFilter ?? false
+        } else if (indexPath.section == 1) {
+            cell.onSwitch.on = distanceSwitchStates[indexPath.row] ?? false
+        } else if (indexPath.section == 2) {
+            cell.onSwitch.on = sortSwitchStates[indexPath.row] ?? false
+        } else if (indexPath.section == 3) {
+            cell.onSwitch.on = categorySwitchStates[indexPath.row] ?? false
+        }
         return cell
+
+    }
+    func showAllCategories() {
+        print("in show all")
+        self.yelpFilters["Categories"] = yelpCategoriesFull()
+        tableView.reloadData()
     }
     
     func switchCell(switchCell: SwitchCell, didChangeValue value: Bool) {
         let indexPath = tableView.indexPathForCell(switchCell)!
-        switchStates[indexPath.row] = value
+        
+        if (indexPath.section == 0) {
+            dealsFilter = value
+        } else if (indexPath.section == 1) {
+            distanceSwitchStates = [Int:Bool]()
+            distanceSwitchStates[indexPath.row] = value
+            tableView.reloadData()
+        } else if (indexPath.section == 2) {
+            sortSwitchStates = [Int:Bool]()
+            sortSwitchStates[indexPath.row] = value
+            tableView.reloadData()
+        } else if (indexPath.section == 3) {
+            categorySwitchStates[indexPath.row] = value
+        }
+        
+    }
+    
+    func yelpDeals() -> [[String:String]] {
+        return [["name": "Offering Deals", "code": "true"]]
+    }
+    
+    func yelpDistance() -> [[String:String]] {
+        return [["name": "Auto", "code": "0"],
+                ["name": "0.3 mi", "code": "482"],
+                ["name": "1 mi", "code": "1609"],
+                ["name": "5 mi", "code": "8046"],
+                ["name": "20 mi", "code": "32186"]]
+    }
+
+    func yelpSortyBy() -> [[String:String]] {
+        return [["name": "Best Match", "code": "0"],
+            ["name": "Distance", "code": "1"],
+            ["name": "Ratings", "code": "2"]]
     }
 
     func yelpCategories() -> [[String:String]] {
@@ -83,14 +217,21 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
             ["name": "Senegalese", "code": "senegalese"],
             ["name": "South African", "code": "southafrican"],
             ["name": "American (New)", "code": "newamerican"],
+            ["name": "Show All", "code": "showall"]]
+    }
+    
+    func yelpCategoriesFull() -> [[String:String]] {
+        return [["name": "Afghan", "code": "afghani"],
+            ["name": "African", "code": "african"],
+            ["name": "Senegalese", "code": "senegalese"],
+            ["name": "South African", "code": "southafrican"],
+            ["name": "American (New)", "code": "newamerican"],
             ["name": "American (Traditional)", "code": "tradamerican"],
             ["name": "Andalusian", "code": "andalusian"],
             ["name": "Arabian", "code": "arabian"],
-            ["name": "Arab Pizza", "code": "arabpizza"],
             ["name": "Argentine", "code": "argentine"],
             ["name": "Armenian", "code": "armenian"],
             ["name": "Asian Fusion", "code": "asianfusion"],
-            ["name": "Asturian", "code": "asturian"],
             ["name": "Australian", "code": "australian"],
             ["name": "Austrian", "code": "austrian"],
             ["name": "Baguettes", "code": "baguettes"],

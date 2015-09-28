@@ -35,23 +35,27 @@
                                                         <constraint firstAttribute="height" constant="65" id="JeJ-dq-tbj"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bff-Vz-gwg">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bff-Vz-gwg">
                                                     <rect key="frame" x="81" y="30" width="83" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="15" id="JjE-9w-knz"/>
+                                                        <constraint firstAttribute="width" constant="83" id="Yc9-Rp-8TO"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="1. Cockscomb" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CgQ-Xc-PiY">
-                                                    <rect key="frame" x="81" y="8" width="102" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="1. Cockscomb" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CgQ-Xc-PiY">
+                                                    <rect key="frame" x="81" y="8" width="185" height="18"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="230 Reviews" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6b-zr-4hK">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="230 Reviews" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6b-zr-4hK">
                                                     <rect key="frame" x="167" y="30" width="77" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.43365293560606055" green="0.43365293560606055" blue="0.43365293560606055" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="564 4th St, SOMA" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RO4-PK-bbi">
-                                                    <rect key="frame" x="81" y="51" width="111" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="564 4th St, SOMA" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RO4-PK-bbi">
+                                                    <rect key="frame" x="81" y="51" width="231" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -68,8 +72,8 @@
                                                     <color key="textColor" red="0.43365293560606055" green="0.43365293560606055" blue="0.43365293560606055" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Bars, American (New)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDx-oK-OqN">
-                                                    <rect key="frame" x="81" y="68" width="132" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bars, American (New)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDx-oK-OqN">
+                                                    <rect key="frame" x="81" y="69" width="132" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.43365293560606055" green="0.43365293560606055" blue="0.43365293560606055" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -121,9 +125,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Yelp" id="coY-oI-gDe">
                         <barButtonItem key="leftBarButtonItem" title="Filters" id="VnO-OI-GuT">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="MbF-UQ-p76" kind="modal" id="aNQ-I1-p59"/>
                             </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Map" id="7uW-2S-fQY">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -146,25 +154,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="78" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OpB-Lq-p1D">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="41" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OpB-Lq-p1D">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SwitchCell" rowHeight="78" id="PNd-qx-OiN" customClass="SwitchCell" customModule="Yelp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="320" height="78"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SwitchCell" rowHeight="41" id="PNd-qx-OiN" customClass="SwitchCell" customModule="Yelp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="320" height="41"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PNd-qx-OiN" id="3wL-gM-WEK">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="77"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0R-FB-shZ">
-                                                    <rect key="frame" x="36" y="28" width="97" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0R-FB-shZ">
+                                                    <rect key="frame" x="15" y="10" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mXK-TR-YET">
-                                                    <rect key="frame" x="231" y="23" width="51" height="31"/>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mXK-TR-YET">
+                                                    <rect key="frame" x="256" y="5" width="51" height="31"/>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -177,6 +185,42 @@
                                         <connections>
                                             <outlet property="onSwitch" destination="mXK-TR-YET" id="PtU-WI-9e0"/>
                                             <outlet property="switchLabel" destination="C0R-FB-shZ" id="x7a-62-I9K"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RadioCell" id="5WT-ru-lKj" customClass="RadioCell" customModule="Yelp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="133" width="320" height="41"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5WT-ru-lKj" id="I5o-n1-mHc">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="toy-Dg-Al1">
+                                                    <rect key="frame" x="15" y="9" width="42" height="21"/>
+                                                    <gestureRecognizers/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkbox-16.png" translatesAutoresizingMaskIntoConstraints="NO" id="cCu-pR-XI1">
+                                                    <rect key="frame" x="277" y="11" width="18" height="18"/>
+                                                    <gestureRecognizers/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="18" id="4BG-ne-88h"/>
+                                                        <constraint firstAttribute="height" constant="18" id="bJT-CP-UC9"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="toy-Dg-Al1" firstAttribute="centerY" secondItem="I5o-n1-mHc" secondAttribute="centerY" id="1zQ-ay-2Tc"/>
+                                                <constraint firstItem="toy-Dg-Al1" firstAttribute="centerY" secondItem="I5o-n1-mHc" secondAttribute="centerY" id="6gC-eR-Jh2"/>
+                                                <constraint firstAttribute="trailing" secondItem="cCu-pR-XI1" secondAttribute="trailing" constant="25" id="U5m-L1-paT"/>
+                                                <constraint firstItem="toy-Dg-Al1" firstAttribute="leading" secondItem="I5o-n1-mHc" secondAttribute="leading" constant="15" id="dzq-qA-U7T"/>
+                                                <constraint firstItem="cCu-pR-XI1" firstAttribute="centerY" secondItem="I5o-n1-mHc" secondAttribute="centerY" id="rra-dR-zZ2"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="radioImageView" destination="cCu-pR-XI1" id="U5g-9b-uxD"/>
+                                            <outlet property="radioLabel" destination="toy-Dg-Al1" id="MVb-id-zVW"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -192,11 +236,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Filters" id="Ao1-Nh-D3j">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="fK6-4J-QqY">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="onCancelButton:" destination="pfS-Xv-Iam" id="ehk-gp-JYV"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Search" id="gUg-PK-Gid">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="onSearchButton:" destination="pfS-Xv-Iam" id="M0C-h4-VAl"/>
                             </connections>
@@ -247,4 +293,7 @@
             <point key="canvasLocation" x="1745" y="338"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="checkbox-16.png" width="16" height="16"/>
+    </resources>
 </document>
